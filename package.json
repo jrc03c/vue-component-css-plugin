@@ -1,0 +1,22 @@
+{
+  "name": "vue-component-css-plugin",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "a css component plugin for vue 3",
+  "main": "vue-css.js",
+  "scripts": {
+    "build": "esbuild vue-css.js --bundle --outfile=vue-css.min.js --minify",
+    "watch": "esbuild vue-css.js --bundle --outfile=vue-css.min.js --minify --watch"
+  },
+  "keywords": [
+    "vue",
+    "css"
+  ],
+  "author": "jrc03c",
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "^0.15.10",
+    "eslint": "^8.24.0",
+    "eslint-plugin-vue": "^9.6.0"
+  }
+}
