@@ -1,12 +1,11 @@
 {
   "name": "vue-component-css-plugin",
-  "type": "module",
   "version": "0.0.1",
   "description": "a css component plugin for vue 3",
-  "main": "vue-css.js",
+  "main": "dist/vue-css.js",
   "scripts": {
-    "build": "esbuild vue-css.js --bundle --outfile=vue-css.min.js --minify",
-    "watch": "esbuild vue-css.js --bundle --outfile=vue-css.min.js --minify --watch"
+    "build": "esbuild src/vue-css.js --bundle --outfile=dist/vue-css.js --minify",
+    "watch": "esbuild src/vue-css.js --bundle --outfile=dist/vue-css.js --minify --watch"
   },
   "keywords": [
     "vue",

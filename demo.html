@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <div id="app">
+      <my-styled-component
+        v-for="number in numbers"
+        :key="number"
+        @delete="numbers.splice(numbers.indexOf(number), 1)">
+        {{ number }}
+      </my-styled-component>
+
+      <button @click="numbers.push(Math.random())">Add number</button>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="dist/vue-css.js"></script>
+    <script>
+      const MyInnerStyledComponent = {
+        template: /* html */ `
+          <div class="my-inner-styled-component">
+            <slot></slot>
+          </div>
+        `,
+
+        data() {
+          return {
+            css: /* css */ `
+              .my-inner-styled-component {
+                color: red;
+              }
+            `,
+          }
+        },
+
+        mounted() {
+          const self = this
+          console.log("Hello from the INNER styled component!")
+        },
+      }
+
+      const MyStyledComponent = {
+        components: {
+          "my-inner-styled-component": MyInnerStyledComponent,
+        },
+
+        template: /* html */ `
+          <div class="my-styled-component">
+            <my-inner-styled-component>
+              <slot></slot>
+            </my-inner-styled-component>
+
+            <button @click="$emit('delete')">
+              Delete
+            </button>
+          </div>
+        `,
+
+        data() {
+          return {
+            css: /* css */ `
+              .my-styled-component {
+                padding: 1em;
+                background-color: yellow;
+              }
+            `,
+          }
+        },
+
+        mounted() {
+          console.log("Hello from MyStyledComponent!")
+        },
+      }
+
+      const app = Vue.createApp({
+        data() {
+          return {
+            numbers: [],
+          }
+        },
+      })
+
+      app.use(VueComponentCSSPlugin)
+      app.component("my-styled-component", MyStyledComponent)
+      app.mount("#app")
+    </script>
+  </body>
+</html>
