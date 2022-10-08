@@ -13,7 +13,7 @@ const VueComponentCSSPlugin = {
         styleElement.innerHTML = self.css
         styleElement.id = id
         document.head.appendChild(styleElement)
-        if (oldMountedFunction) oldMountedFunction()
+        if (oldMountedFunction) oldMountedFunction.bind(self)()
       }
 
       component.unmounted = function () {
@@ -23,7 +23,7 @@ const VueComponentCSSPlugin = {
           document.head.removeChild(styleElement)
         }
 
-        if (oldUnmountedFunction) oldUnmountedFunction()
+        if (oldUnmountedFunction) oldUnmountedFunction.bind(self)()
       }
 
       if (component.components) {
@@ -42,4 +42,8 @@ export default VueComponentCSSPlugin
 
 if (typeof window !== "undefined") {
   window.VueComponentCSSPlugin = VueComponentCSSPlugin
+}
+
+if (typeof module !== "undefined") {
+  module.exports = VueComponentCSSPlugin
 }
