@@ -1,3 +1,5 @@
+> This project is now archived and has been superseded by [vue-component-with-css](https://github.com/jrc03c/vue-component-with-css).
+
 # Intro
 
 This plugin for Vue 3 makes it a little easier to keep a component's CSS with the rest of the component code in cases where there's not a build step.
